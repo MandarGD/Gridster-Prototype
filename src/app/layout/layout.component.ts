@@ -8,7 +8,9 @@ import { LayoutService, IComponent } from '../services/layout.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private layoutService: LayoutService) {}
+  componentList: string[] = ['example1', 'example2', 'example3'];
+
+  constructor(public layoutService: LayoutService) {}
 
   get options(): GridsterConfig {
     return this.layoutService.options;

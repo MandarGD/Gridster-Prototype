@@ -1,6 +1,4 @@
-<div class="toolbar">
-  <button (click)="layoutService.addItem()">Add Item</button>
-  <div
+<!--<div
     class="draggable"
     draggable="true"
     (dragend)="layoutService.dropItem('example1')"
@@ -15,20 +13,58 @@
   >
     Example 2
   </div>
+
+  <div
+    class="draggable"
+    draggable="true"
+    (dragend)="layoutService.dropItem('example3')"
+  >
+    Example 3
+  </div>-->
+
+<!--<button
+    (click)="layoutService.addItem()"
+    style="float: right; margin-left: 20px;"
+  >
+    Add Item
+  </button>-->
+<div style="float: right;" class="menu-div">
+  <button class="menu" mat-raised-button [matMenuTriggerFor]="menu">
+    Menu
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let comp of componentList"
+      (click)="layoutService.addItem(comp)"
+    >
+      {{ comp }}
+    </button>
+  </mat-menu>
 </div>
 
-<gridster [options]="options">
+<gridster [options]="options" style="background-color: #ffffff;">
   <gridster-item
     *ngFor="let item of layout"
     [item]="item"
     (dragover)="layoutService.setDropId(item.id)"
   >
+    <button
+      class="delete"
+      color="primary"
+      mat-mini-fab
+      (mousedown)="layoutService.deleteItem(item.id)"
+      style="float: right;"
+    >
+      <span class="material-icons">
+        close
+      </span>
+    </button>
+
     <ng-container
       appLayoutItem
       [componentRef]="layoutService.getComponentRef(item.id)"
     >
     </ng-container>
-
-    <button (click)="layoutService.deleteItem(item)">Delete Item</button>
   </gridster-item>
 </gridster>

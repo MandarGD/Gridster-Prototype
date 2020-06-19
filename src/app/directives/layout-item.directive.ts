@@ -5,15 +5,16 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   ComponentRef,
-  ɵCodegenComponentFactoryResolver,
 } from '@angular/core';
 
 import { Example1Component } from '../components/example1/example1.component';
 import { Example2Component } from '../components/example2/example2.component';
+import { Example3Component } from '../components/example3/example3.component';
 
 const components = {
   example1: Example1Component,
   example2: Example2Component,
+  example3: Example3Component,
 };
 
 @Directive({
@@ -25,7 +26,7 @@ export class LayoutItemDirective implements OnChanges {
 
   constructor(
     private container: ViewContainerRef,
-    private resolver: ɵCodegenComponentFactoryResolver
+    private resolver: ComponentFactoryResolver
   ) {}
 
   ngOnChanges(): void {

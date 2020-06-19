@@ -22,4 +22,26 @@
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
   }
+  gridster-item {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 16px;
+  }
+  .delete {
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  }
+  gridster {
+    background-color: #ffffff;
+  }
+  .menu {
+    width: 100px;
+    text-align: center;
+    height: 60px;
+    font-size: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .menu-div {
+    padding: 16px;
+  }
 }

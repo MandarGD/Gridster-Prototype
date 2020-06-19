@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GridsterConfig, GridsterItem } from 'angular-gridster2';
+import { GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 import { UUID } from 'angular2-uuid';
 
 export interface IComponent {
@@ -20,11 +20,18 @@ export class LayoutService {
     resizable: {
       enabled: true,
     },
+    scrollSensitivity: 0,
+    scrollSpeed: 0,
+    maxCols: 3,
+    swap: true,
+    maxRows: 3,
+    gridType: 'fit',
+    displayGrid: 'always',
   };
 
-  public layout: GridsterItem[];
+  public layout: GridsterItem[] = [];
 
-  public components: IComponent[];
+  public components: IComponent[] = [];
 
   dropId: string;
 
@@ -37,7 +44,7 @@ export class LayoutService {
   dropItem(dragId: string): void {
     const { components } = this;
 
-    const comp: IComponent = components.find((c) => c.id === this.dropId);
+    const comp: IComponent = this.components.find((c) => c.id === this.dropId);
 
     const updateIdx: number = comp
       ? components.indexOf(comp)
@@ -51,6 +58,9 @@ export class LayoutService {
     this.components = Object.assign([], components, {
       [updateIdx]: componentItem,
     });
+
+    console.log(dragId);
+    console.log(this.dropId);
   }
 
   getComponentRef(id: string): string {
@@ -58,14 +68,17 @@ export class LayoutService {
     return comp ? comp.componentRef : null;
   }
 
-  addItem(): void {
+  addItem(dragId: string): void {
     this.layout.push({
-      cols: 5,
+      cols: 1,
       id: UUID.UUID(),
-      rows: 5,
+      rows: 1,
       x: 0,
       y: 0,
     });
+
+    this.setDropId(this.layout[this.layout.length - 1].id);
+    this.dropItem(dragId);
   }
 
   deleteItem(id: string): void {
