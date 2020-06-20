@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./example3.component.scss'],
 })
 export class Example3Component implements OnInit {
-  name: string = 'example3';
+  public name: string = 'example3';
   constructor() {}
 
   getName(): string {

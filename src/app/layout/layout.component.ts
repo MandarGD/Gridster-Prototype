@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { LayoutService, IComponent } from '../services/layout.service';
+import { components } from '../directives/layout-item.directive';
 
 @Component({
   selector: 'app-layout',
@@ -8,8 +9,6 @@ import { LayoutService, IComponent } from '../services/layout.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  componentList: string[] = ['example1', 'example2', 'example3'];
-
   constructor(public layoutService: LayoutService) {}
 
   get options(): GridsterConfig {
@@ -18,6 +17,14 @@ export class LayoutComponent implements OnInit {
 
   get layout(): GridsterItem[] {
     return this.layoutService.layout;
+  }
+
+  get compArray() {
+    var compArray: any[] = [];
+    for (var Ref in components) {
+      compArray.push(Ref);
+    }
+    return compArray;
   }
 
   get components(): IComponent[] {

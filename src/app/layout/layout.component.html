@@ -35,7 +35,7 @@
   <mat-menu #menu="matMenu">
     <button
       mat-menu-item
-      *ngFor="let comp of componentList"
+      *ngFor="let comp of this.compArray"
       (click)="layoutService.addItem(comp)"
     >
       {{ comp }}
