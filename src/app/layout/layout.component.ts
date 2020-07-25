@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
-import { LayoutService, IComponent } from '../services/layout.service';
+import {
+  LayoutService,
+  IComponent,
+  IUserReports,
+  getReportTitles,
+} from '../services/layout.service';
 import { components } from '../directives/layout-item.directive';
 
 @Component({
@@ -9,6 +14,8 @@ import { components } from '../directives/layout-item.directive';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+  allReports: IUserReports;
+  titles = [];
   constructor(public layoutService: LayoutService) {}
 
   get options(): GridsterConfig {
@@ -31,5 +38,27 @@ export class LayoutComponent implements OnInit {
     return this.layoutService.components;
   }
 
-  ngOnInit(): void {}
+  menuClick(data: string) {
+    console.log(data);
+  }
+
+  ngOnInit(): void {
+    this.layoutService.getReports().subscribe((c: IUserReports) => {
+      this.allReports = c;
+
+      this.titles = getReportTitles(
+        this.allReports.MapItems,
+        this.allReports.ChartItems
+      );
+    });
+
+    /*if (this.allReports) {
+      this.titles = getReportTitles(
+        this.allReports.MapItems,
+        this.allReports.ChartItems
+      );
+
+      console.log(this.titles);
+    }*/
+  }
 }

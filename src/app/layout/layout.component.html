@@ -35,10 +35,13 @@
   <mat-menu #menu="matMenu">
     <button
       mat-menu-item
-      *ngFor="let comp of this.compArray"
-      (click)="layoutService.addItem(comp)"
+      *ngFor="let comp of titles"
+      (click)="
+        layoutService.addItem('baseComponent');
+        layoutService.setCurrents(comp.ChartMapTitle, comp.ChartMapHTMLString)
+      "
     >
-      {{ comp }}
+      {{ comp.ChartMapTitle }}
     </button>
   </mat-menu>
 </div>

@@ -1,16 +1,81 @@
 import { Injectable } from '@angular/core';
 import { GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 import { UUID } from 'angular2-uuid';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface IComponent {
   id: string;
   componentRef: string;
+}
+/*
+export interface IAddress {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: IGeo;
+}
+
+export interface IGeo {
+  lat: string;
+  lng: string;
+}
+
+export interface ICompany {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+}
+
+export interface IUser {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: IAddress;
+  phone: string;
+  website: string;
+  company: ICompany;
+}*/
+
+export function getReportTitles(
+  mapReports: IReport[],
+  chartReports: IReport[]
+) {
+  let myArray = [];
+  mapReports.forEach((report: IReport) => {
+    myArray.push(report);
+  });
+
+  chartReports.forEach((report: IReport) => {
+    myArray.push(report);
+  });
+
+  console.log('lmao');
+
+  return myArray;
+}
+
+export interface IReport {
+  Type: string;
+  ChartMapTitle: string;
+  ChartMapHTMLString: string;
+}
+
+export interface IUserReports {
+  //Reports: IReport[];
+  ChartItems: IReport[];
+  MapItems: IReport[];
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class LayoutService {
+  //private userUrl = 'https://jsonplaceholder.typicode.com/users';
+  private reportsApi = 'data1_new.txt';
+
   public options: GridsterConfig = {
     draggable: {
       enabled: true,
@@ -35,10 +100,23 @@ export class LayoutService {
 
   dropId: string;
 
-  constructor() {}
+  currentReportTitle: string;
+  currentReportContent: string;
+
+  constructor(private http: HttpClient) {}
 
   setDropId(dropId: string) {
     this.dropId = dropId;
+  }
+
+  getReports(): Observable<IUserReports> {
+    return this.http.get<IUserReports>(this.reportsApi);
+  }
+
+  setCurrents(title: string, content: string) {
+    this.currentReportTitle = title;
+    this.currentReportContent = content;
+    console.log(content);
   }
 
   dropItem(dragId: string): void {

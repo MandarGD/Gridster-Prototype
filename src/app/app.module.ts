@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
+import { BaseItemComponent } from './components/base-item/base-item.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
     Example2Component,
     LayoutItemDirective,
     Example3Component,
+    BaseItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,6 @@ import { MatMenuModule } from '@angular/material/menu';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [Example1Component, Example2Component, Example3Component],
+  entryComponents: [BaseItemComponent],
 })
 export class AppModule {}

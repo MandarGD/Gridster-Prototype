@@ -10,11 +10,13 @@ import {
 import { Example1Component } from '../components/example1/example1.component';
 import { Example2Component } from '../components/example2/example2.component';
 import { Example3Component } from '../components/example3/example3.component';
+import { BaseItemComponent } from '../components/base-item/base-item.component';
 
 export const components = {
-  example1: Example1Component,
-  example2: Example2Component,
-  example3: Example3Component,
+  //example1: Example1Component,
+  //example2: Example2Component,
+  //example3: Example3Component,
+  baseComponent: BaseItemComponent,
 };
 
 @Directive({
