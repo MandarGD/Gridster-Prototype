@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { BaseItemComponent } from './components/base-item/base-item.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { GridStackComponent } from './components/grid-stack/grid-stack.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { BaseItemComponent } from './components/base-item/base-item.component';
     LayoutItemDirective,
     Example3Component,
     BaseItemComponent,
+    GridStackComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { BaseItemComponent } from './components/base-item/base-item.component';
     MatIconModule,
     HttpClientModule,
     MatMenuModule,
+    HighchartsChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
