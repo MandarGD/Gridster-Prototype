@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import {
   LayoutService,
   IComponent,
   IUserReports,
   getReportTitles,
+  IReport,
 } from '../services/layout.service';
 import { components } from '../directives/layout-item.directive';
 
@@ -13,7 +14,7 @@ import { components } from '../directives/layout-item.directive';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, AfterViewInit {
   allReports: IUserReports;
   titles = [];
   constructor(public layoutService: LayoutService) {}
@@ -42,6 +43,10 @@ export class LayoutComponent implements OnInit {
     console.log(data);
   }
 
+  ngAfterViewInit() {}
+
+  addAllItems() {}
+
   ngOnInit(): void {
     this.layoutService.getReports().subscribe((c: IUserReports) => {
       this.allReports = c;
@@ -50,7 +55,22 @@ export class LayoutComponent implements OnInit {
         this.allReports.MapItems,
         this.allReports.ChartItems
       );
+
+      console.log('populated');
     });
+
+    setTimeout(() => {
+      this.titles.forEach((report: IReport) => {
+        setTimeout(() => {
+          this.layoutService.addItem('baseComponent');
+          this.layoutService.setCurrents(
+            report.ChartMapTitle,
+            report.ChartMapHTMLString
+          );
+        }, 200);
+      });
+      console.log(this.titles);
+    }, 200);
 
     /*if (this.allReports) {
       this.titles = getReportTitles(

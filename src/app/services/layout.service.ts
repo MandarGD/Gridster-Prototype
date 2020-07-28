@@ -52,8 +52,6 @@ export function getReportTitles(
     myArray.push(report);
   });
 
-  console.log('lmao');
-
   return myArray;
 }
 
@@ -87,9 +85,9 @@ export class LayoutService {
     },
     scrollSensitivity: 0,
     scrollSpeed: 0,
-    maxCols: 3,
+    maxCols: 4,
     swap: true,
-    maxRows: 3,
+    maxRows: 4,
     gridType: 'fit',
     displayGrid: 'always',
   };
