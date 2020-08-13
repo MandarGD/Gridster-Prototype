@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Example3Component } from './example3.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('Example3Component', () => {
   let component: Example3Component;
@@ -8,9 +9,9 @@ describe('Example3Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Example3Component ]
-    })
-    .compileComponents();
+      declarations: [Example3Component],
+      providers: [HttpClient, HttpHandler],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

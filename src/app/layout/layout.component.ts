@@ -17,6 +17,7 @@ import { components } from '../directives/layout-item.directive';
 export class LayoutComponent implements OnInit, AfterViewInit {
   allReports: IUserReports;
   titles = [];
+
   constructor(public layoutService: LayoutService) {}
 
   get options(): GridsterConfig {
@@ -45,8 +46,6 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {}
 
-  addAllItems() {}
-
   ngOnInit(): void {
     this.layoutService.getReports().subscribe((c: IUserReports) => {
       this.allReports = c;
@@ -57,20 +56,22 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       );
 
       console.log('populated');
+
+      //this.layout1 = this.layoutService.addAllItems(c);
     });
 
-    setTimeout(() => {
-      this.titles.forEach((report: IReport) => {
-        setTimeout(() => {
-          this.layoutService.addItem('baseComponent');
-          this.layoutService.setCurrents(
-            report.ChartMapTitle,
-            report.ChartMapHTMLString
-          );
-        }, 200);
-      });
-      console.log(this.titles);
-    }, 200);
+    // setTimeout(() => {
+    //   this.titles.forEach((report: IReport) => {
+    //     setTimeout(() => {
+    //       this.layoutService.addItem('baseComponent');
+    //       this.layoutService.setCurrents(
+    //         report.ChartMapTitle,
+    //         report.ChartMapHTMLString
+    //       );
+    //     }, 50);
+    //   });
+    //   console.log(this.titles);
+    // }, 50);
 
     /*if (this.allReports) {
       this.titles = getReportTitles(

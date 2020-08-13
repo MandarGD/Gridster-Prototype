@@ -52,22 +52,24 @@
     [item]="item"
     (dragover)="layoutService.setDropId(item.id)"
   >
-    <button
-      class="delete"
-      color="primary"
-      mat-mini-fab
-      (mousedown)="layoutService.deleteItem(item.id)"
-      style="float: right;"
-    >
-      <span class="material-icons">
-        close
-      </span>
-    </button>
+    <div class="gridster-item-content" *ngIf="item.hasContent">
+      <button
+        class="delete"
+        color="primary"
+        mat-mini-fab
+        (mousedown)="layoutService.deleteItem(item.id)"
+        style="float: right;"
+      >
+        <span class="material-icons">
+          close
+        </span>
+      </button>
 
-    <ng-container
-      appLayoutItem
-      [componentRef]="layoutService.getComponentRef(item.id)"
-    >
-    </ng-container>
+      <ng-container
+        appLayoutItem
+        [componentRef]="layoutService.getComponentRef(item.id)"
+      >
+      </ng-container>
+    </div>
   </gridster-item>
 </gridster>

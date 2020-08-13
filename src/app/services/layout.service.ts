@@ -83,11 +83,15 @@ export class LayoutService {
     resizable: {
       enabled: true,
     },
-    scrollSensitivity: 0,
-    scrollSpeed: 0,
-    maxCols: 4,
+    enableEmptyCellClick: false,
+    enableEmptyCellContextMenu: false,
+    enableEmptyCellDrop: false,
+    enableEmptyCellDrag: false,
+    enableOccupiedCellDrop: false,
+
+    maxCols: 6,
     swap: true,
-    maxRows: 4,
+    maxRows: 6,
     gridType: 'fit',
     displayGrid: 'always',
   };
@@ -116,6 +120,35 @@ export class LayoutService {
     this.currentReportContent = content;
     console.log(content);
   }
+
+  // addAllItems(reportObject: IUserReports) {
+  //   let combinedArray = getReportTitles(
+  //     reportObject.ChartItems,
+  //     reportObject.MapItems
+  //   );
+
+  //   let layoutTest: GridsterItem[] = [];
+
+  //   combinedArray.forEach((report: IReport) => {
+  //     //this.addItem('baseComponent');
+  //     layoutTest.push({
+  //       cols: 1,
+  //       id: UUID.UUID(),
+  //       rows: 2,
+  //       x: 0,
+  //       y: 0,
+  //       hasContent: true
+  //     });
+
+  //     this.setDropId(layoutTest[layoutTest.length - 1].id);
+  //     //this.dropItem(dragId);
+
+  //     this.setCurrents(report.ChartMapTitle, report.ChartMapHTMLString);
+
+  //     console.log(report.ChartMapTitle);
+  //   });
+  //   return layoutTest;
+  // }
 
   dropItem(dragId: string): void {
     const { components } = this;
@@ -148,9 +181,10 @@ export class LayoutService {
     this.layout.push({
       cols: 1,
       id: UUID.UUID(),
-      rows: 1,
+      rows: 2,
       x: 0,
       y: 0,
+      hasContent: true,
     });
 
     this.setDropId(this.layout[this.layout.length - 1].id);

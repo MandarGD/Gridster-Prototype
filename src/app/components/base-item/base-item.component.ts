@@ -35,6 +35,7 @@ Highcharts.setOptions({
 export class BaseItemComponent implements OnInit, AfterViewInit {
   title: string;
   data: SafeHtml;
+  stuff: string = "thing";
   @ViewChild('htmlContainer') container;
 
   reports: IUserReports;

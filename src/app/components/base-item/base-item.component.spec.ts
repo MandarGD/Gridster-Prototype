@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BaseItemComponent } from './base-item.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('BaseItemComponent', () => {
   let component: BaseItemComponent;
@@ -8,9 +9,9 @@ describe('BaseItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BaseItemComponent ]
-    })
-    .compileComponents();
+      declarations: [BaseItemComponent],
+      providers: [HttpClient, HttpHandler],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
