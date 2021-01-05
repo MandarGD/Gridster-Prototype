@@ -1,6 +1,6 @@
 # Dashboard
 
-Dashboard prototype developed using Angular for RideShark
+Dashboard proof of concept developed using Angular for RideShark
 
 Screenshots of final product:
 
